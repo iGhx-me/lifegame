@@ -1,0 +1,199 @@
+
+<!-- saved from url=(0023)https://conwaylife.com/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="A community for Conway&#39;s Game of Life and related cellular automata.">
+<meta name="keywords" content="Conway&#39;s Game of Life, cellular automaton, cellular automata, John Horton Conway">
+<meta name="author" content="Nathaniel Johnston">
+
+<meta name="LifeViewer" content="viewer textarea 150">
+<title _msttexthash="23787361" _msthash="0">康威的生命游戏</title>
+<link rel="shortcut icon" type="image/x-icon" href="https://conwaylife.com/favicon.ico">
+<link rel="icon" type="image/x-icon" href="https://conwaylife.com/favicon.ico">
+<link rel="stylesheet" type="text/css" href="./康威的生命游戏_files/style.css">
+
+<script>
+	var lv_style = '#C [[ ZOOM 16 GRID COLOR GRID 192 192 192 GRIDMAJOR 10 COLOR GRIDMAJOR 128 128 128 COLOR DEADRAMP 255 220 192 COLOR ALIVE 0 0 0 COLOR ALIVERAMP 0 0 0 COLOR DEAD 192 220 255 COLOR BACKGROUND 255 255 255 GPS 10 WIDTH 937 HEIGHT 600 ]]';
+
+	let patternName = ["2-engine Cordership","Copperhead","Gosper glider gun","Sir Robin","Snark loop",];
+	let patternDesc = ["A c/12 diagonal spaceship that is the smallest engineered spaceship (i.e., spaceship that was deliberately constructed instead of found) known to date. Won the 2017 Pattern of the Year contest.","The first spaceship to be found that travels 1 cell per 10 generations. Won 2nd place in the 2016 Pattern of the Year contest.","A pattern that repeatedly creates gliders, and thus grows without bound. Was the first infinitely-growing pattern to be found. Discovered in 1970.","The first elementary spaceship to be found that travels at a direction other than orthogonal (side-to-side or up-and-down) or diagonal with slope 1. Won the 2018 Pattern of the Year contest.","A period 43 oscillator that works by using four Snarks (discovered in 2013) to reflect some gliders around a diamond-shaped track.",];
+	let patternURL = ["https://conwaylife.com/wiki/2-engine_Cordership","https://conwaylife.com/wiki/Copperhead","https://conwaylife.com/wiki/Gosper_glider_gun","https://conwaylife.com/wiki/Sir_Robin","https://conwaylife.com/wiki/P43_Snark_loop",];
+	let patternRLEhead = ["x = 41, y = 49, rule = B3/S23","x = 12, y = 8, rule = B3/S23","x = 36, y = 9, rule = B3/S23","x = 79, y = 31, rule = B3/S23","x = 65, y = 65, rule = B3/S23",];
+	let patternRLE = ["19b2o$19b4o$19bob2o2$20bo$19b2o$19b3o$21bo$33b2o$33b2o7$36bo$35b2o$34bo3bo$35b2o2bo$40bo$37bobo$38bo$38bo$38b2o$38b2o3$13bo10bo$12b5o5bob2o11bo$11bo10bo3bo9bo$12b2o8b3obo9b2o$13b2o9b2o12bo$2o13bo21b3o$2o35b3o7$8b2o$8b2o11b2o$19b2o2bo$24bo3bo$18bo5bo3bo$19bo2b2o3bobo$20b3o5bo$28bo!","5bob2o$4bo6bo$3b2o3bo2bo$2obo5b2o$2obo5b2o$3b2o3bo2bo$4bo6bo$5bob2o!","24bo11b$22bobo11b$12b2o6b2o12b2o$11bo3bo4b2o12b2o$2o8bo5bo3b2o14b$2o8bo3bob2o4bobo11b$10bo5bo7bo11b$11bo3bo20b$12b2o!","6bo3bob2o$6b3obo3bo18b3o$5b2o4b3o3b2o15b2o2b2o$5bo3bo6b2o14bo2bobo$o3bo4b2obo3bo2bobo11bo4bobo$bob3o5b3o2bo4bo13bo4b2o$bo3b4obob2o3bob2obo2b3o2bo3bobo4bobob2o$6b3o2bo2b2o5b2o2b2obo3b2o2b2o3bobob2o$7b2o2bo2b2o5b2o2b2obobob2o4bo2bo11b2o$12bobo6b2o2bo2bob2obo5bob2o4bo5bobo$21bobob2ob2o3b2o3b2o2b2o3bo5bo3bo$20bo5b3o5bob2obo4bo2bo5bo3b4o$20bo3b3o8bo9b2o3bo2bo3bo5b3o$20bo24bob3obo6bo2bo$22bo22b3o3bo10bobob2o$45b2o2b2o3bo3b2ob4obobo2b2o$46bob3obo5bo5bo7bo$45b2o2b2obo6bobo4bo5b3o$52b2o6bobobo3bo4b2o$47bobo4b2obob2o2b3ob2ob2ob2o$48bo11b4obo4b2ob2o2$68bo6b2o$68bo6bobo$68bo3bo2bo$69bobobo4bo$71bobo2b3o$67bo3bo2bo$67bo3bob2o$69bo2bo$70bo!","27b2o$27bobo$29bo4b2o$25b4ob2o2bo2bo$25bo2bo3bobob2o$28bobobobo$29b2obobo$33bo2$19b2o$20bo8bo$20bobo5b2o$21b2o$35bo$36bo$34b3o2$25bo$25b2o$24bobo4b2o22bo$31bo21b3o$32b3o17bo$34bo17b2o2$45bo$46b2o12b2o$45b2o14bo$3b2o56bob2o$4bo9b2o37bo5b3o2bo$2bo10bobo37b2o3bo3b2o$2b5o8bo5b2o35b2obo$7bo13bo22b2o15bo$4b3o12bobo21bobo12b3o$3bo15b2o22bo13bo$3bob2o35b2o5bo8b5o$b2o3bo3b2o37bobo10bo$o2b3o5bo37b2o9bo$2obo56b2o$3bo14b2o$3b2o12b2o$19bo2$11b2o17bo$12bo17b3o$9b3o21bo$9bo22b2o4bobo$38b2o$39bo2$28b3o$28bo$29bo$42b2o$35b2o5bobo$35bo8bo$44b2o2$31bo$30bobob2o$30bobobobo$27b2obobo3bo2bo$27bo2bo2b2ob4o$29b2o4bo$35bobo$36b2o!",];
+	let patternStyle = ["#C [[ ZOOM 7 GRID COLOR GRID 192 192 192 COLOR DEADRAMP 255 220 192 COLOR ALIVE 0 0 0 COLOR ALIVERAMP 0 0 0 COLOR DEAD 192 220 255 COLOR BACKGROUND 255 255 255 GPS 10 WIDTH 937 HEIGHT 600 ]]","#C [[ ZOOM 16 GRID COLOR GRID 192 192 192 GRIDMAJOR 10 COLOR GRIDMAJOR 128 128 128 COLOR DEADRAMP 255 220 192 COLOR ALIVE 0 0 0 COLOR ALIVERAMP 0 0 0 COLOR DEAD 192 220 255 COLOR BACKGROUND 255 255 255 GPS 10 WIDTH 937 HEIGHT 600 ]]","#C [[ ZOOM 16 GRID COLOR GRID 192 192 192 GRIDMAJOR 10 COLOR GRIDMAJOR 128 128 128 COLOR DEADRAMP 255 220 192 COLOR ALIVE 0 0 0 COLOR ALIVERAMP 0 0 0 COLOR DEAD 192 220 255 COLOR BACKGROUND 255 255 255 GPS 10 WIDTH 937 HEIGHT 600 ]]","#C [[ ZOOM 4 COLOR DEADRAMP 255 220 192 COLOR ALIVE 0 0 0 COLOR ALIVERAMP 0 0 0 COLOR DEAD 192 220 255 COLOR BACKGROUND 255 255 255 GPS 10 WIDTH 937 HEIGHT 600 ]]","#C [[ ZOOM 6 GRID COLOR GRID 192 192 192 COLOR DEADRAMP 255 220 192 COLOR ALIVE 0 0 0 COLOR ALIVERAMP 0 0 0 COLOR DEAD 192 220 255 COLOR BACKGROUND 255 255 255 GPS 10 WIDTH 937 HEIGHT 600 ]]",];
+
+	var showAdv = 1;
+
+	function updatePattern(patID) {
+		document.getElementById('patname').style.display='block';
+		document.getElementById('patdesc').style.display='block';
+		document.getElementById('patdesc').innerHTML=patternDesc[patID] + (1==0 && patID == 0 ? '' : ' <b><a href=\'' + patternURL[patID] + '\'>More info on LifeWiki</a></b>');
+		document.getElementById('patname').innerHTML='Current Pattern: ' + patternName[patID];
+		document.getElementById('rle').value=patternStyle[patID] + '\r\n' + patternRLEhead[patID] + '\r\n' + patternRLE[patID];
+		return true;
+	}
+
+	function customRLE(callr) {
+		showAdv = 1 - showAdv;
+		document.getElementById('patname').style.display='block';
+		document.getElementById('patdesc').style.display='block';
+		if(showAdv == 0) {
+			document.getElementById('showAdv').innerHTML='Hide Advanced Options';
+			document.getElementById('rle').style.position="relative";
+			document.getElementById('rle').style.top="0px";
+			document.getElementById('updateRLE').style.display='block';
+			document.getElementById('patdesc').innerHTML='You can enter the <a href="wiki/Run_Length_Encoded">RLE</a> code for any pattern that you wish to view below.';
+			document.getElementById('patname').innerHTML='Current Pattern: Custom';
+		} else {
+			document.getElementById('showAdv').innerHTML='Show Advanced Options';
+			document.getElementById('rle').style.position="absolute";
+			document.getElementById('rle').style.top="-200px";
+			document.getElementById('updateRLE').style.display='none';
+			updatePattern(document.getElementById('pattern').value);
+			updateMe(callr);
+		}
+		return true;
+	}
+</script>
+
+<style>
+.collapsible {
+  background-color: #8e95ba;
+  color: white;
+  cursor: pointer;
+  padding: 12px 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-weight: bold;
+  border-top:1px solid #161646;
+  border-bottom:1px solid #161646;
+  font-size:1em;
+}
+
+.active, .collapsible:hover {
+  background-color: #626c9e;
+}
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #e6e8ee;
+  line-height:1.2em;
+  box-shadow: inset 0 -1px 0 #161646;
+}
+
+.lv_click{
+	font-size:1em;
+	padding:4px 8px;
+}
+
+#cwl_navbar{
+	font-size:1.1em;
+	color:#000;
+	position:relative;
+	background-color:#e6e8ee;
+	padding: 12px 0px;
+	width: 937px;
+	border: none;
+	text-align: center;
+	outline: none;
+	border-top:1px solid #161646;
+	border-bottom:1px solid #161646;
+	margin:36px 0px 16px 0px;
+	box-shadow: 0px 0px 4px #000;
+}
+#cwl_navbar a{text-decoration:none;color:#4a5176;}
+#cwl_navbar a:hover{text-decoration:underline;}
+
+ul{margin-top:6px;margin-bottom:6px;}
+li{margin-left:24px;margin-top:4px;margin-bottom:4px;}
+</style>
+
+</head>
+
+<body>
+	<div id="container" style="min-height:100%;padding:0;">
+		<div id="body" style="min-height:100%;margin:0;padding:0;">
+			<div id="centerDiv" style="min-height:100%;">
+				<div id="title" style="padding-top:1.5em;"><img src="./康威的生命游戏_files/conwaylifecom.png" width="419" height="66" alt="ConwayLife.com - Conway&#39;s Game of Life 和相关元胞自动机的社区" _mstalt="4106401" _msthash="1">
+					<div style="position:absolute;left:118px;top:90px;" _msttexthash="113931571" _msthash="2">Conway's Game of Life 和相关元胞自动机的社区</div>
+				</div>
+				<script type="text/javascript" src="./康威的生命游戏_files/lv-plugin.js.下载"></script>
+
+				<div id="cwl_navbar">
+					<font _mstmutation="1" _msttexthash="63027289" _msthash="3"><b _mstmutation="1" _istranslated="1"><a href="https://conwaylife.com/" _istranslated="1">首页</a></b> • <a href="https://conwaylife.com/wiki/" _mstmutation="1" _istranslated="1">LifeWiki</a> • <a href="https://conwaylife.com/book/" _mstmutation="1" _istranslated="1">书籍</a> • <a href="https://catagolue.hatsya.com/" _mstmutation="1" _istranslated="1">Catagolue</a> • <a href="https://conwaylife.com/forums/" _mstmutation="1" _istranslated="1">论坛</a> • <a href="https://discord.gg/BCuYCEn" _mstmutation="1" _istranslated="1">Discord</a> • <a href="http://golly.sourceforge.net/" _mstmutation="1" _istranslated="1">Golly</a></font>
+				</div>
+
+				<div class="viewer" style="margin-top:12px;">
+					<div style="text-align:center;margin-bottom:12px;margin-top:4px;">
+						<font style="font-size:1.1em;" _msttexthash="21669908" _msthash="4">选择模式：</font> <select name="pattern" id="pattern" style="font-size:1.1em;padding:3px 6px;" onchange="updatePattern(document.getElementById(&#39;pattern&#39;).value);updateMe(this)">
+						<option value="0" _msttexthash="370240" _msthash="5">2 引擎 Cordership</option><option value="1" selected="" _msttexthash="153205" _msthash="6">铜头</option><option value="2" _msttexthash="291473" _msthash="7">Gosper滑翔机枪</option><option value="3" _msttexthash="111397" _msthash="8">罗宾爵士</option><option value="4" _msttexthash="138112" _msthash="9">Snark 循环</option>						</select>
+						<button class="lv_click" style="margin-right:4px;" onclick="document.getElementById(&#39;patname&#39;).style.display=&#39;none&#39;;document.getElementById(&#39;patdesc&#39;).style.display=&#39;none&#39;;document.getElementById(&#39;rle&#39;).value=lv_style + &#39;\r\nx = 1, y = 1, rule = B3/S23\r\nb!&#39;;updateMe(this)" _msttexthash="6746987" _msthash="10">清除 LifeViewer</button><button id="showAdv" class="lv_click" onclick="customRLE(this)" _msttexthash="25824227" _msthash="11">显示高级选项</button>
+					</div>
+					<div style="text-align: center; padding: 8px; font-weight: bold; font-size: 1.2em; display: none;" id="patname" _msttexthash="49048545" _msthash="12">当前模式：Gosper滑翔机枪</div>
+					<div style="text-align: left; padding: 0px 16px 12px; font-size: 1em; line-height: 1.2em; display: none;" id="patdesc" _msttexthash="111588282" _msthash="27"><font _mstmutation="1" _msttexthash="379101489" _msthash="30">一种反复创建滑翔机的模式，因此不受限制地生长。是第一个发现的无限增长模式。1970年发现。</font><b><a href="https://conwaylife.com/wiki/Gosper_glider_gun" _msttexthash="21168030" _msthash="31">更多信息请见LifeWiki</a></b></div>
+
+					<center _msthidden="1"><textarea id="rle" style="height: 100px; position: absolute; top: -200px; width: 900px; margin-bottom: 6px;">#C [[ ZOOM 16 GRID COLOR GRID 192 192 192 GRIDMAJOR 10 COLOR GRIDMAJOR 128 128 128 COLOR DEADRAMP 255 220 192 COLOR ALIVE 0 0 0 COLOR ALIVERAMP 0 0 0 COLOR DEAD 192 220 255 COLOR BACKGROUND 255 255 255 GPS 10 WIDTH 937 HEIGHT 600 ]]
+x = 1, y = 1, rule = B3/S23
+b!</textarea><button id="updateRLE" class="lv_click" style="display: none; margin-bottom: 12px;" onclick="updateMe(this)" _msttexthash="5285696" _msthash="14" _mstvisible="0">更新 LifeViewer</button></center>
+
+					<canvas width="936" height="600" style="width: 937px; height: 600px; cursor: grab;" contenteditable="false" tabindex="1"></canvas>
+				</div>
+
+				<button class="collapsible" style="margin-top:16px;" _msttexthash="52320216" _msthash="15">什么是康威的生命游戏？</button>
+				<div class="content">
+				  <p style="margin-top:14px;" _msttexthash="1154795187" _msthash="16"><a href="https://conwaylife.com/wiki/Conway%27s_Game_of_Life" _istranslated="1">Conway's Game of Life</a> 是一个在 2D 方形网格上玩的元胞自动机。网格上的每个方块（或“单元格”）可以是活的，也可以是死的，它们根据以下规则演化：</p>
+				  <ul>
+				  	<li _msttexthash="192149646" _msthash="17">任何活细胞少于两个活的邻居都会死亡（称为人口不足）。</li>
+				  	<li _msttexthash="217813518" _msthash="18">任何具有三个以上活邻居的活细胞都会死亡（称为人口过剩）。</li>
+				  	<li _msttexthash="137087301" _msthash="19">任何有两三个活邻居的活细胞都会不变地活到下一代。</li>
+				  	<li _msttexthash="93976194" _msthash="20">任何只有三个活邻居的死细胞都会复活。</li>
+				  </ul>
+				  <p style="margin-bottom:14px;" _msttexthash="943516002" _msthash="21">细胞的初始构型可以由人类创造，但此后的所有世代都完全由上述规则决定。游戏的目标是找到以有趣方式进化的模式——这是人们现在已经做了 50 多年的事情。</p>
+				</div>
+				<button class="collapsible" style="border-top:0px;" _msttexthash="43988321" _msthash="22">我怎样才能知道它？</button>
+				<div class="content">
+				  <p style="margin-top:14px;margin-bottom:14px;" _msttexthash="3146514995" _msthash="23">首先了解游戏的最佳方式是通过上面的 <a href="https://lazyslug.com/lifeviewer/" _istranslated="1">LifeViewer</a> 或下载生活模拟程序 <a href="http://golly.sourceforge.net/" _istranslated="1">Golly</a> 来玩它。绘制一些图案，然后按“播放”按钮查看它们是如何演变的。一旦你熟悉了这个游戏，你可以看看<a href="https://conwaylife.com/wiki/" _istranslated="1">LifeWiki</a>或<a href="https://catagolue.hatsya.com/" _istranslated="1">Catagolue</a>来浏览关于它的知识，或者你可以阅读<a href="https://conwaylife.com/book/" _istranslated="1">这本书</a>，以获得更直接的生活世界的指南。</p>
+				</div>
+				<button class="collapsible" style="border-top:0px;" _msttexthash="66615367" _msthash="24">我在哪里可以和别人谈论它？</button>
+				<div class="content">
+				  <p style="margin-top:14px;margin-bottom:14px;" _msttexthash="286079131" _msthash="25">大多数新的生命发现都会在 <a href="https://conwaylife.com/forums/" _istranslated="1">ConwayLife.com 论坛</a>和 <a href="https://discord.gg/BCuYCEn" _istranslated="1">Conwaylife Lounge Discord 服务器</a>上公布和讨论。</p>
+				</div>
+
+				<div id="footer" style="margin-top:12px;padding-bottom:8px;" _msttexthash="152794954" _msthash="26">网站创建和维护者：<a href="http://www.njohnston.ca/" _istranslated="1">Nathaniel Johnston</a> • <a href="https://lazyslug.com/lifeviewer/" _istranslated="1">LifeViewer</a> by Chris Rowett • <a href="https://conwaylife.com/wiki/LifeWiki:Privacy_policy" _istranslated="1">隐私政策</a></div>
+			</div>
+		</div>
+	</div>
+	<script>
+		var coll = document.getElementsByClassName("collapsible");
+		var i;
+
+		for (i = 0; i < coll.length; i++) {
+		  coll[i].addEventListener("click", function() {
+			this.classList.toggle("active");
+			var content = this.nextElementSibling;
+			if (content.style.maxHeight){
+			  content.style.maxHeight = null;
+			} else {
+			  content.style.maxHeight = content.scrollHeight + "px";
+			}
+		  });
+		}
+	</script>
+
+</body></html>
